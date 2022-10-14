@@ -47,6 +47,10 @@
   width: 700px;
 }
 
+.product-image {
+  border-radius: 10px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
