@@ -25,9 +25,20 @@ const products = [
   },
 ]
 
+const Button = (props) => {
+  
+  return (
+    <button onClick={props.onClick} className='button-primary'>{props.text}</button>
+  )
+}
+
 function App() {
   const onHandleClick = () => {
     console.log('was clicked')
+  }
+
+  const onHandlerAddProduct = () => {
+    console.log('add product')
   }
   return (
     <div className="App">
@@ -36,13 +47,14 @@ function App() {
         <p>
           Hello World!
         </p>
-        <button onClick={onHandleClick} className='button-primary'>Click me</button>
+        <Button onClick={onHandleClick} text='Click me' />
         <div className='products'>
           {products.map((product) => (
             <div key={product.id}>
               <h3>{product.name}</h3>
               <img className='product-image' src={product.imageUrl} alt={product.name} />
               <p>{product.description}</p>
+              <Button onClick={onHandlerAddProduct} text='Add to Cart' />
             </div>
           ))}
         </div>
