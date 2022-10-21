@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import React from 'react';
+import Button from './components/Button'
 
 const products = [
   {
@@ -26,23 +27,17 @@ const products = [
   },
 ]
 
-class ButtonClass extends React.Component {
-  constructor(props){
-    super(props)
-  }
+// class ButtonClass extends React.Component {
+//   constructor(props){
+//     super(props)
+//   }
 
-  render(){
-    return (
-      <button onClick={this.props.onClick} className='button-primary'>{this.props.text}</button>
-    )
-  }
-}
-
-const Button = ({ onClick, text }) => {
-  return (
-    <button onClick={onClick} className='button-primary'>{text}</button>
-  )
-}
+//   render(){
+//     return (
+//       <button onClick={this.props.onClick} className='button-primary'>{this.props.text}</button>
+//     )
+//   }
+// }
 
 function App() {
   const onHandleClick = () => {
@@ -59,14 +54,14 @@ function App() {
         <p>
           Hello World!
         </p>
-        <ButtonClass onClick={onHandleClick} text='Click me' />
+        <Button onClick={onHandleClick} text='Click me' />
         <div className='products'>
           {products.map((product) => (
             <div key={product.id}>
               <h3>{product.name}</h3>
               <img className='product-image' src={product.imageUrl} alt={product.name} />
               <p>{product.description}</p>
-              <ButtonClass onClick={onHandlerAddProduct} text='Add to Cart' />
+              <Button onClick={onHandlerAddProduct} text='Add to Cart' />
             </div>
           ))}
         </div>
