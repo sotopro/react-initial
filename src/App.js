@@ -27,21 +27,17 @@ const products = [
   },
 ]
 
-// class ButtonClass extends React.Component {
-//   constructor(props){
-//     super(props)
-//   }
-
-//   render(){
-//     return (
-//       <button onClick={this.props.onClick} className='button-primary'>{this.props.text}</button>
-//     )
-//   }
-// }
-
 function App() {
   const onHandleClick = () => {
-    console.log('was clicked')
+    const date = new Date();
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    const hour = date.getHours();
+    const minute = date.getMinutes();
+    const second = date.getSeconds();
+    const timestamp = `${day}/${month}/${year} ${hour}:${minute}:${second}`;
+    console.log(timestamp);
   }
 
   const onHandlerAddProduct = () => {
