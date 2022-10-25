@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import React from 'react';
+import React, { useState} from 'react';
 import Button from './components/Button'
 
 const products = [
@@ -28,6 +28,8 @@ const products = [
 ]
 
 function App() {
+  const [clicks, setClicks] = useState(0);
+  const [time, setTime] = useState(0);
   const onHandleClick = () => {
     const date = new Date();
     const day = date.getDate();
@@ -37,7 +39,8 @@ function App() {
     const minute = date.getMinutes();
     const second = date.getSeconds();
     const timestamp = `${day}/${month}/${year} ${hour}:${minute}:${second}`;
-    console.log(timestamp);
+    setTime(timestamp);
+    setClicks(previousClick => previousClick + 1);
   }
 
   const onHandlerAddProduct = () => {
@@ -49,6 +52,12 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Hello World!
+        </p>
+        <p>
+          {clicks} clicks
+        </p>
+        <p>
+          time: {time}
         </p>
         <Button onClick={onHandleClick} text='Click me' />
         <div className='products'>
