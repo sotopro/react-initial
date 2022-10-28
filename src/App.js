@@ -1,9 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
-import React from 'react';
+import React, { useEffect, useState} from 'react';
 import Button from './components/Button'
 
-const products = [
+const productsData = [
   {
     id: 1,
     name: 'Product 1',
@@ -27,32 +27,70 @@ const products = [
   },
 ]
 
-// class ButtonClass extends React.Component {
-//   constructor(props){
-//     super(props)
-//   }
+const App = () => {
+  const [products, setProducts] = useState([]);
+  const [title, setTitle] = useState('');
+  const [backgroundColor, setBackgroundColor] = useState('black');
+  const [clicks, setClicks] = useState(0);
+  const [time, setTime] = useState(0);
 
-//   render(){
-//     return (
-//       <button onClick={this.props.onClick} className='button-primary'>{this.props.text}</button>
-//     )
-//   }
-// }
-
-function App() {
   const onHandleClick = () => {
     console.log('was clicked')
+    setBackgroundColor('#BFBDC1');
+    const date = new Date();
+    const day = date.getDay();
+    const month = date.getMonth();
+    const year = date.getFullYear();
+    const hour = date.getHours();
+    const minutes = date.getMinutes();
+    const seconds = date.getSeconds();
+    const timestamp = `${day}/${month}/${year} ${hour}:${minutes}:${seconds}`;
+    setTime(timestamp);
+    setClicks(previousClick=> previousClick + 1);
+
   }
 
+  console.log(clicks, time)
   const onHandlerAddProduct = () => {
     console.log('add product')
   }
+
+  useEffect(() => {
+    setTitle('Hello!');
+    // const getProducts = () => {
+    //   setTimeout(() => {
+    //     setProducts(productsData);
+    //   }, 2000);
+    // }
+
+    const getAllProducts = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(
+          setProducts(productsData)
+        );
+      }, 2000);
+    });
+    getAllProducts.then((result) => {
+      console.log('result', result)
+    });
+  }, []);
+
+  useEffect(() => {
+    if(clicks > 2) {
+      setTitle('Hello again!');
+    }
+  }, [clicks])
+
+
   return (
-    <div className="App">
+    <div className="App" style={{ backgroundColor: backgroundColor  }}>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Hello World!
+          {title}
+        </p>
+        <p>
+          {clicks} {time}
         </p>
         <Button onClick={onHandleClick} text='Click me' />
         <div className='products'>
