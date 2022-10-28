@@ -1,109 +1,60 @@
-import logo from './logo.svg';
 import './App.css';
-import React, { useEffect, useState} from 'react';
-import Button from './components/Button'
+import React from 'react';
+import NavBar from './components/NavBar';
 
-const productsData = [
-  {
-    id: 1,
-    name: 'Product 1',
-    price: 100,
-    description: 'description',
-    imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbN4hEMNReLTBOTFa8iKdx7JSM2EJ5ZPdfJCzu0CGY_H7UDX33I8GXQil_gkw0FqmHUMY&usqp=CAU'
-  },
-  {
-    id: 2,
-    name: 'Product 2',
-    price: 200,
-    description: 'description',
-    imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqIfPm1qtVRH2dz-EMrRc3l7r8kf-mVcQfXinzXrh992OgCQD1xmpN19C0kbgYJ2YwbxY&usqp=CAU'
-  },
-  {
-    id: 3,
-    name: 'Product 3',
-    price: 300,
-    description: 'description',
-    imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-Do-eg663j3L9FuvvV8--uvnknGCUVoBE1tmLLOnST65uTF4Z_StK7dTZ2pXe0wLLReY&usqp=CAU'
-  },
-]
 
 const App = () => {
-  const [products, setProducts] = useState([]);
-  const [title, setTitle] = useState('');
-  const [backgroundColor, setBackgroundColor] = useState('black');
-  const [clicks, setClicks] = useState(0);
-  const [time, setTime] = useState(0);
-
-  const onHandleClick = () => {
-    console.log('was clicked')
-    setBackgroundColor('#BFBDC1');
-    const date = new Date();
-    const day = date.getDay();
-    const month = date.getMonth();
-    const year = date.getFullYear();
-    const hour = date.getHours();
-    const minutes = date.getMinutes();
-    const seconds = date.getSeconds();
-    const timestamp = `${day}/${month}/${year} ${hour}:${minutes}:${seconds}`;
-    setTime(timestamp);
-    setClicks(previousClick=> previousClick + 1);
-
-  }
-
-  console.log(clicks, time)
-  const onHandlerAddProduct = () => {
-    console.log('add product')
-  }
-
-  useEffect(() => {
-    setTitle('Hello!');
-    // const getProducts = () => {
-    //   setTimeout(() => {
-    //     setProducts(productsData);
-    //   }, 2000);
-    // }
-
-    const getAllProducts = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(
-          setProducts(productsData)
-        );
-      }, 2000);
-    });
-    getAllProducts.then((result) => {
-      console.log('result', result)
-    });
-  }, []);
-
-  useEffect(() => {
-    if(clicks > 2) {
-      setTitle('Hello again!');
-    }
-  }, [clicks])
-
-
   return (
-    <div className="App" style={{ backgroundColor: backgroundColor  }}>
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          {title}
+    <div>
+      <NavBar />
+      <main>
+        <h1>Tech Bubble Blog</h1>
+        <p>Where do they get a random paragraph?" he wondered as he clicked the generate button. Do they just write a random paragraph or do they get it somewhere? At that moment he read the random paragraph and realized it was about random paragraphs and his world would never be the same.
+          She was infatuated with color. She didn't have a favorite color per se, but she did have a fondness for teals and sea greens. You could see it in the clothes she wore that color was an important part of her overall style. She took great pride that color flowed from her and that color was always all around her. That is why, she explained to her date sitting across the table, that she could never have a serious relationship with him due to the fact that he was colorblind.
+          The boxed moved. That was a problem. Peter had packed the box three hours before and there was nothing inside that should make it move. The question now was whether or not Peter was going to open it up and look inside to see why it had moved. The answer to that question was obvious. Peter dropped the package into the mailbox so he would never have to see it again.
+          Betty decided to write a short story and she was sure it was going to be amazing.
         </p>
-        <p>
-          {clicks} {time}
+        <p>Where do they get a random paragraph?" he wondered as he clicked the generate button. Do they just write a random paragraph or do they get it somewhere? At that moment he read the random paragraph and realized it was about random paragraphs and his world would never be the same.
+          She was infatuated with color. She didn't have a favorite color per se, but she did have a fondness for teals and sea greens. You could see it in the clothes she wore that color was an important part of her overall style. She took great pride that color flowed from her and that color was always all around her. That is why, she explained to her date sitting across the table, that she could never have a serious relationship with him due to the fact that he was colorblind.
+          The boxed moved. That was a problem. Peter had packed the box three hours before and there was nothing inside that should make it move. The question now was whether or not Peter was going to open it up and look inside to see why it had moved. The answer to that question was obvious. Peter dropped the package into the mailbox so he would never have to see it again.
+          Betty decided to write a short story and she was sure it was going to be amazing.
         </p>
-        <Button onClick={onHandleClick} text='Click me' />
-        <div className='products'>
-          {products.map((product) => (
-            <div key={product.id}>
-              <h3>{product.name}</h3>
-              <img className='product-image' src={product.imageUrl} alt={product.name} />
-              <p>{product.description}</p>
-              <Button onClick={onHandlerAddProduct} text='Add to Cart' />
-            </div>
-          ))}
-        </div>
-      </header>
+        <p>Where do they get a random paragraph?" he wondered as he clicked the generate button. Do they just write a random paragraph or do they get it somewhere? At that moment he read the random paragraph and realized it was about random paragraphs and his world would never be the same.
+          She was infatuated with color. She didn't have a favorite color per se, but she did have a fondness for teals and sea greens. You could see it in the clothes she wore that color was an important part of her overall style. She took great pride that color flowed from her and that color was always all around her. That is why, she explained to her date sitting across the table, that she could never have a serious relationship with him due to the fact that he was colorblind.
+          The boxed moved. That was a problem. Peter had packed the box three hours before and there was nothing inside that should make it move. The question now was whether or not Peter was going to open it up and look inside to see why it had moved. The answer to that question was obvious. Peter dropped the package into the mailbox so he would never have to see it again.
+          Betty decided to write a short story and she was sure it was going to be amazing.
+        </p>
+        <p>Where do they get a random paragraph?" he wondered as he clicked the generate button. Do they just write a random paragraph or do they get it somewhere? At that moment he read the random paragraph and realized it was about random paragraphs and his world would never be the same.
+          She was infatuated with color. She didn't have a favorite color per se, but she did have a fondness for teals and sea greens. You could see it in the clothes she wore that color was an important part of her overall style. She took great pride that color flowed from her and that color was always all around her. That is why, she explained to her date sitting across the table, that she could never have a serious relationship with him due to the fact that he was colorblind.
+          The boxed moved. That was a problem. Peter had packed the box three hours before and there was nothing inside that should make it move. The question now was whether or not Peter was going to open it up and look inside to see why it had moved. The answer to that question was obvious. Peter dropped the package into the mailbox so he would never have to see it again.
+          Betty decided to write a short story and she was sure it was going to be amazing.
+        </p>
+        <p>Where do they get a random paragraph?" he wondered as he clicked the generate button. Do they just write a random paragraph or do they get it somewhere? At that moment he read the random paragraph and realized it was about random paragraphs and his world would never be the same.
+          She was infatuated with color. She didn't have a favorite color per se, but she did have a fondness for teals and sea greens. You could see it in the clothes she wore that color was an important part of her overall style. She took great pride that color flowed from her and that color was always all around her. That is why, she explained to her date sitting across the table, that she could never have a serious relationship with him due to the fact that he was colorblind.
+          The boxed moved. That was a problem. Peter had packed the box three hours before and there was nothing inside that should make it move. The question now was whether or not Peter was going to open it up and look inside to see why it had moved. The answer to that question was obvious. Peter dropped the package into the mailbox so he would never have to see it again.
+          Betty decided to write a short story and she was sure it was going to be amazing.
+        </p>
+        <p>Where do they get a random paragraph?" he wondered as he clicked the generate button. Do they just write a random paragraph or do they get it somewhere? At that moment he read the random paragraph and realized it was about random paragraphs and his world would never be the same.
+          She was infatuated with color. She didn't have a favorite color per se, but she did have a fondness for teals and sea greens. You could see it in the clothes she wore that color was an important part of her overall style. She took great pride that color flowed from her and that color was always all around her. That is why, she explained to her date sitting across the table, that she could never have a serious relationship with him due to the fact that he was colorblind.
+          The boxed moved. That was a problem. Peter had packed the box three hours before and there was nothing inside that should make it move. The question now was whether or not Peter was going to open it up and look inside to see why it had moved. The answer to that question was obvious. Peter dropped the package into the mailbox so he would never have to see it again.
+          Betty decided to write a short story and she was sure it was going to be amazing.
+        </p>
+        <p>Where do they get a random paragraph?" he wondered as he clicked the generate button. Do they just write a random paragraph or do they get it somewhere? At that moment he read the random paragraph and realized it was about random paragraphs and his world would never be the same.
+          She was infatuated with color. She didn't have a favorite color per se, but she did have a fondness for teals and sea greens. You could see it in the clothes she wore that color was an important part of her overall style. She took great pride that color flowed from her and that color was always all around her. That is why, she explained to her date sitting across the table, that she could never have a serious relationship with him due to the fact that he was colorblind.
+          The boxed moved. That was a problem. Peter had packed the box three hours before and there was nothing inside that should make it move. The question now was whether or not Peter was going to open it up and look inside to see why it had moved. The answer to that question was obvious. Peter dropped the package into the mailbox so he would never have to see it again.
+          Betty decided to write a short story and she was sure it was going to be amazing.
+        </p>
+        <p>Where do they get a random paragraph?" he wondered as he clicked the generate button. Do they just write a random paragraph or do they get it somewhere? At that moment he read the random paragraph and realized it was about random paragraphs and his world would never be the same.
+          She was infatuated with color. She didn't have a favorite color per se, but she did have a fondness for teals and sea greens. You could see it in the clothes she wore that color was an important part of her overall style. She took great pride that color flowed from her and that color was always all around her. That is why, she explained to her date sitting across the table, that she could never have a serious relationship with him due to the fact that he was colorblind.
+          The boxed moved. That was a problem. Peter had packed the box three hours before and there was nothing inside that should make it move. The question now was whether or not Peter was going to open it up and look inside to see why it had moved. The answer to that question was obvious. Peter dropped the package into the mailbox so he would never have to see it again.
+          Betty decided to write a short story and she was sure it was going to be amazing.
+        </p>
+        <p>Where do they get a random paragraph?" he wondered as he clicked the generate button. Do they just write a random paragraph or do they get it somewhere? At that moment he read the random paragraph and realized it was about random paragraphs and his world would never be the same.
+          She was infatuated with color. She didn't have a favorite color per se, but she did have a fondness for teals and sea greens. You could see it in the clothes she wore that color was an important part of her overall style. She took great pride that color flowed from her and that color was always all around her. That is why, she explained to her date sitting across the table, that she could never have a serious relationship with him due to the fact that he was colorblind.
+          The boxed moved. That was a problem. Peter had packed the box three hours before and there was nothing inside that should make it move. The question now was whether or not Peter was going to open it up and look inside to see why it had moved. The answer to that question was obvious. Peter dropped the package into the mailbox so he would never have to see it again.
+          Betty decided to write a short story and she was sure it was going to be amazing.
+        </p>
+      </main>
     </div>
   );
 }
