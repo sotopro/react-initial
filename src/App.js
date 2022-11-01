@@ -32,6 +32,11 @@ const App = () => {
      <NavBar />
      <main>
       <h3>Hello</h3>
+    {products.length > 0 ? products.map(product => (
+      <div key={product.id}>
+        <h3>{product.name}</h3>
+      </div>
+    )) : <h3>No products</h3>}
      </main>
      {/* <main>
      <h1>Tech Bubble Blog</h1>
