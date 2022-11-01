@@ -3,10 +3,10 @@
 :root {
   font-size: 16px;
   font-family: 'Roboto', sans-serif;
-  --primary-color: '#E5D9F2';
-  --secondary-color: '#E5D9F2';
+  --primary-color: #E5D9F2;
+  --secondary-color: #E5D9F2;
   --text-primary: '#000000';
-  --text-secondary: '#FFFFFF';
+  --text-secondary: #FFFFFF;
   --bg-primary: #ffffff;
   --bg-secondary: #373149;
   --transition-speed: 200ms;
