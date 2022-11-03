@@ -1,8 +1,8 @@
 import './App.css';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import NavBar from './components/Navbar'
 import { Route, Routes } from 'react-router-dom';
-import { Home, Detail} from './pages/index'
+import { Home, Pokemon} from './pages/index'
 
 const App = () => {
   
@@ -11,8 +11,8 @@ const App = () => {
       <NavBar />
       <main>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route  path="detail" element={<Detail />} />
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/:pokemonId" element={<Pokemon />} />
         </Routes>
       </main>
     </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import './styles.css';
 
-const Detail = () => {
+const Pokemon = () => {
     return (
         <div>
             <h1>Detail</h1>
@@ -9,4 +9,4 @@ const Detail = () => {
     )
 }
 
-export default Detail;
+export default Pokemon;
