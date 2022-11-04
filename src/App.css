@@ -30,10 +30,9 @@ body::-webkit-scrollbar-thumb {
 main {
   display: flex;
   flex-direction: column;
-  margin: auto;
   padding: 1rem;
   line-height: 1.8rem;
-  max-width: 1200px;
+  margin-left: 5rem;
 }
 
 

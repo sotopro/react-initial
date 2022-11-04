@@ -1,0 +1,48 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    height: 100vh
+}
+
+.title {
+    font-size: 22px;
+    font-weight: bold;
+    color:#212121
+}
+.list-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+.button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+}
+
+button {
+    background-color: #fff;
+    border: 1px solid #212121;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #212121;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #373149;
+    color: #fff;
+}
+
+button:disabled {
+    background-color: #ccc;
+    color: #fff;
+    cursor: not-allowed;
+}

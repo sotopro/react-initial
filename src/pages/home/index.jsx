@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect} from "react";
+import Card from "../../components/card";
 import './styles.css';
 
 const Home = () => {
@@ -19,11 +20,13 @@ const Home = () => {
             const newPokemons = results.map((pokemon) => {
                 const paddedIndex = ('00' + pokemon.id).slice(-3);
                 const image = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${paddedIndex}.png`;
+                const types = pokemon.types.map(type => type.type.name).join(', ');
+
                 return {
                     id: pokemon.id,
                     name: pokemon.name,
                     image,
-                    type: pokemon.types.map(type => type.type.name).join(', '),
+                    type: types,
                 }
             });
             setPokemons(newPokemons);
@@ -39,14 +42,36 @@ const Home = () => {
     }, []);
 
 
-    console.log('pokemons', pokemons);
+    const handleNext = async () => {
+        startPokemon.current += 20;
+        endPokemon.current += 20;
+        getPokemons(startPokemon.current, endPokemon.current);
+    }
+
+    const handlePrev = async () => {
+        startPokemon.current -= 20;
+        endPokemon.current -= 20;
+        getPokemons(startPokemon.current, endPokemon.current);
+    }
 
     return (
-        <div>
-            <h1>Home</h1>
+        <div className="container">
+            <h1 className="title">Home</h1>
             {isLoading ? (
                 <div>Loading...</div>
-            ) : null}
+            ) : (
+                <>
+                <div className="list-container">
+                    {pokemons.map(pokemon => (
+                        <Card key={pokemon.id} item={pokemon} />
+                    ))}
+                </div>
+                <div className="button-container">
+                    <button disabled={startPokemon.current <= 1 || isLoading} onClick={handlePrev}>Previous</button>
+                    <button disabled={endPokemon.current >= 300 || isLoading}  onClick={handleNext}>Next</button>
+                </div>
+                </>
+            )}
         </div>
     )
 }
