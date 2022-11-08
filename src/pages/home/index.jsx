@@ -1,14 +1,18 @@
 import React, { useState, useRef, useEffect, useCallback} from "react";
 import Card from "../../components/card";
+import { useNavigate } from "react-router-dom";
+
 import './styles.css';
 
 const Home = () => {
+    const navigate = useNavigate();
     const [pokemons, setPokemons] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [filteredPokemons, setFilteredPokemons] = useState([]);
 
     const startPokemon = useRef(1);
     const endPokemon = useRef(20);
+    const inputRef = useRef(null);
 
     const getPokemons = async (start = '1', end = '20') => {
         try {
@@ -72,11 +76,19 @@ const Home = () => {
 
     const onHandleChange = useCallback(debounce((e) => {
         const searchValue = e.target.value.toLowerCase();
+        const deleteVowels = searchValue.replace(/[aeiou]/g, '');
+        inputRef.current.value = deleteVowels;
         console.log(searchValue);
         const newPokemons = pokemons.filter(pokemon => pokemon.name.includes(searchValue));
         setFilteredPokemons(newPokemons);
     }, 500), [pokemons, setFilteredPokemons]);
 
+        const onHandleKeyDown = (e) => {
+            console.log(e.key);
+        }
+        const handleDetail = (item) => {
+            navigate(`/pokemon/${item.id}`, { state: item });
+        }
     return (
         <div className="container">
             <h1 className="title">Home</h1>
@@ -84,10 +96,10 @@ const Home = () => {
                 <div>Loading...</div>
             ) : (
                 <>
-                <input placeholder="filter a pokemon..." className="input" onChange={onHandleChange} />
+                <input ref={inputRef} placeholder="filter a pokemon..." className="input" onChange={onHandleChange} onKeyDown={onHandleKeyDown} value={inputRef?.current?.target?.value}/>
                 <div className="list-container">
                     {filteredPokemons.map(pokemon => (
-                        <Card key={pokemon.id} item={pokemon} />
+                        <Card key={pokemon.id} item={pokemon} goToDetails={handleDetail}  />
                     ))}
                 </div>
                 <div className="button-container">

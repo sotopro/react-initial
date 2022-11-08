@@ -1,15 +1,11 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import './styles.css';
 
-const Card = ({ item}) => {
+const Card = ({ item, goToDetails}) => {
     const { id, name, image, type} = item;
-    const navigate = useNavigate();
-    const handleDetail = () => {
-        navigate(`/pokemon/${id}`, { state: item });
-    }
+    
     return (
-        <div onClick={handleDetail} className="card">
+        <div onClick={() => goToDetails(item)} className="card">
             <div className="card-image-container">
                 <img className="card-image" src={image} alt={item.name} />
             </div>
