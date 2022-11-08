@@ -46,3 +46,22 @@ button:disabled {
     color: #fff;
     cursor: not-allowed;
 }
+
+input {
+    width: 30%;
+    border: 1px solid #212121;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #212121;
+}
+
+input:focus {
+    outline: none;
+}
+
+input::placeholder {
+    color: #212121;
+}
