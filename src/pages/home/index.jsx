@@ -1,10 +1,11 @@
-import React, { useState, useRef, useEffect} from "react";
+import React, { useState, useRef, useEffect, useCallback} from "react";
 import Card from "../../components/card";
 import './styles.css';
 
 const Home = () => {
     const [pokemons, setPokemons] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [filteredPokemons, setFilteredPokemons] = useState([]);
 
     const startPokemon = useRef(1);
     const endPokemon = useRef(20);
@@ -30,6 +31,7 @@ const Home = () => {
                 }
             });
             setPokemons(newPokemons);
+            setFilteredPokemons(newPokemons);
         } catch (error) {
             console.log(error);
         } finally {
@@ -54,6 +56,27 @@ const Home = () => {
         getPokemons(startPokemon.current, endPokemon.current);
     }
 
+    const debounce = (func, wait) => {
+        let timeout;
+
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            }
+
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        }
+    }
+
+    const onHandleChange = useCallback(debounce((e) => {
+        const searchValue = e.target.value.toLowerCase();
+        console.log(searchValue);
+        const newPokemons = pokemons.filter(pokemon => pokemon.name.includes(searchValue));
+        setFilteredPokemons(newPokemons);
+    }, 500), [pokemons, setFilteredPokemons]);
+
     return (
         <div className="container">
             <h1 className="title">Home</h1>
@@ -61,8 +84,9 @@ const Home = () => {
                 <div>Loading...</div>
             ) : (
                 <>
+                <input placeholder="filter a pokemon..." className="input" onChange={onHandleChange} />
                 <div className="list-container">
-                    {pokemons.map(pokemon => (
+                    {filteredPokemons.map(pokemon => (
                         <Card key={pokemon.id} item={pokemon} />
                     ))}
                 </div>
