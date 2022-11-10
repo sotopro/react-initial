@@ -1,7 +1,7 @@
-import React, { useState, useRef, useEffect, useCallback} from "react";
+import React, { useState, useRef, useEffect, useCallback, useContext} from "react";
 import Card from "../../components/card";
 import { useNavigate } from "react-router-dom";
-
+import { ThemeContext } from "../../context/theme.context";
 import './styles.css';
 
 const Home = () => {
@@ -9,10 +9,12 @@ const Home = () => {
     const [pokemons, setPokemons] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [filteredPokemons, setFilteredPokemons] = useState([]);
-
+    const { isDark } = useContext(ThemeContext)
     const startPokemon = useRef(1);
     const endPokemon = useRef(20);
     const inputRef = useRef(null);
+
+    console.warn('isDark', isDark)
 
     const getPokemons = async (start = '1', end = '20') => {
         try {
