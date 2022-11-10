@@ -2,19 +2,18 @@ import React, { useState, useRef, useEffect, useCallback, useContext} from "reac
 import Card from "../../components/card";
 import { useNavigate } from "react-router-dom";
 import { ThemeContext } from "../../context/theme.context";
+import { PokemonsContext } from "../../context/pokemons.context";
 import './styles.css';
 
 const Home = () => {
     const navigate = useNavigate();
-    const [pokemons, setPokemons] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [filteredPokemons, setFilteredPokemons] = useState([]);
     const { isDark } = useContext(ThemeContext)
+    const { pokemons, setPokemons, setPokemonId } = useContext(PokemonsContext)
     const startPokemon = useRef(1);
     const endPokemon = useRef(20);
     const inputRef = useRef(null);
-
-    console.warn('isDark', isDark)
 
     const getPokemons = async (start = '1', end = '20') => {
         try {
@@ -89,7 +88,8 @@ const Home = () => {
             console.log(e.key);
         }
         const handleDetail = (item) => {
-            navigate(`/pokemon/${item.id}`, { state: item });
+            setPokemonId(item.id);
+            navigate(`/pokemon/${item.id}`);
         }
     return (
         <div className="container">
