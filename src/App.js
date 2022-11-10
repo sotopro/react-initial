@@ -3,11 +3,11 @@ import React from 'react';
 import NavBar from './components/Navbar'
 import { Route, Routes } from 'react-router-dom';
 import { Home, Pokemon} from './pages/index'
+import { PokemonProvider } from './context/pokemon';
 
 const App = () => {
-  
   return (
-    <div>
+    <PokemonProvider>
       <NavBar />
       <main>
         <Routes>
@@ -15,7 +15,7 @@ const App = () => {
           <Route exact path="/pokemon/:pokemonId" element={<Pokemon />} />
         </Routes>
       </main>
-    </div>
+    </PokemonProvider>
   );
 }
 

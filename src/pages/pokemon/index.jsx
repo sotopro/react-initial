@@ -1,18 +1,16 @@
-import React from "react";
-import { useParams, useLocation } from "react-router-dom";
+import React, { useContext } from "react";
 import Card from "../../components/card";
+import { PokemonContext } from "../../context/pokemon";
+
 import './styles.css';
 
 const Pokemon = () => {
-    const params = useParams();
-    const { state } = useLocation();
-
-
-
-    console.warn('params', params, 'state', state);
+    const { pokemons, pokemonId } = useContext(PokemonContext);
+    const pokemon = pokemons.find(pokemon => pokemon.id === pokemonId);
+    
     return (
         <div>
-            <Card item={state} />
+            <Card item={pokemon} />
         </div>
     )
 }

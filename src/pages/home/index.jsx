@@ -1,15 +1,14 @@
-import React, { useState, useRef, useEffect, useCallback} from "react";
+import React, { useState, useRef, useEffect, useCallback, useContext} from "react";
+import { PokemonContext } from "../../context/pokemon";
 import Card from "../../components/card";
 import { useNavigate } from "react-router-dom";
-
 import './styles.css';
 
 const Home = () => {
     const navigate = useNavigate();
-    const [pokemons, setPokemons] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [filteredPokemons, setFilteredPokemons] = useState([]);
-
+    const { pokemons, setPokemons, setPokemonId } = useContext(PokemonContext);
     const startPokemon = useRef(1);
     const endPokemon = useRef(20);
     const inputRef = useRef(null);
@@ -87,7 +86,8 @@ const Home = () => {
             console.log(e.key);
         }
         const handleDetail = (item) => {
-            navigate(`/pokemon/${item.id}`, { state: item });
+            setPokemonId(item.id);
+            navigate(`/pokemon/${item.id}`);
         }
     return (
         <div className="container">
