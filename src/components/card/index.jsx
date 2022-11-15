@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import './styles.css';
 
 const Card = ({ item, goToDetails}) => {
@@ -18,4 +18,4 @@ const Card = ({ item, goToDetails}) => {
     )
 };
 
-export default Card;
+export default memo(Card);
