@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import './styles.css';
 
-const Card = ({ item, goToDetails}) => {
+const Card = memo(({ item, goToDetails}) => {
     const { id, name, image, type} = item;
     
     return (
@@ -16,6 +16,8 @@ const Card = ({ item, goToDetails}) => {
             </div>
         </div>
     )
-};
+}, (prevProps, nextProps) => {
+    return prevProps.item.id === nextProps.item.id;
+});
 
-export default memo(Card);
+export default Card;
