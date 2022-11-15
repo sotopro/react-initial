@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { ThemeContext } from "../../context/theme.context";
 import { PokemonsContext } from "../../context/pokemons.context";
 import './styles.css';
+import Spinner from "../../components/loader/spinner";
 
 const Home = () => {
     const navigate = useNavigate();
@@ -77,9 +78,6 @@ const Home = () => {
 
     const onHandleChange = useCallback(debounce((e) => {
         const searchValue = e.target.value.toLowerCase();
-        const deleteVowels = searchValue.replace(/[aeiou]/g, '');
-        inputRef.current.value = deleteVowels;
-        console.log(searchValue);
         const newPokemons = pokemons.filter(pokemon => pokemon.name.includes(searchValue));
         setFilteredPokemons(newPokemons);
     }, 500), [pokemons, setFilteredPokemons]);
@@ -95,7 +93,7 @@ const Home = () => {
         <div className="container">
             <h1 className="title">Home</h1>
             {isLoading ? (
-                <div>Loading...</div>
+              <Spinner  />
             ) : (
                 <>
                 <input ref={inputRef} placeholder="filter a pokemon..." className="input" onChange={onHandleChange} onKeyDown={onHandleKeyDown} value={inputRef?.current?.target?.value}/>
