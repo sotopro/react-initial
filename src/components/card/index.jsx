@@ -1,11 +1,11 @@
-import React from "react";
+import React, { memo } from "react";
 import './styles.css';
 
-const Card = ({ item, goToDetails}) => {
+const Card = ({ item, goToDetails, isFiltering}) => {
     const { id, name, image, type} = item;
     
     return (
-        <div onClick={() => goToDetails(item)} className="card">
+        <div onClick={() => goToDetails(item)} className={isFiltering ? 'card-filtered' : 'card'}>
             <div className="card-image-container">
                 <img className="card-image" src={image} alt={item.name} />
             </div>

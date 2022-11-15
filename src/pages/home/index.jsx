@@ -9,6 +9,7 @@ import Spinner from "../../components/loader/spinner";
 const Home = () => {
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
+    const [isFiltering, setIsFiltering] = useState(false);
     const [filteredPokemons, setFilteredPokemons] = useState([]);
     const { isDark } = useContext(ThemeContext)
     const { pokemons, setPokemons, setPokemonId } = useContext(PokemonsContext)
@@ -78,7 +79,11 @@ const Home = () => {
 
     const onHandleChange = useCallback(debounce((e) => {
         const searchValue = e.target.value.toLowerCase();
+        inputRef.current.value = searchValue;
         const newPokemons = pokemons.filter(pokemon => pokemon.name.includes(searchValue));
+        if(newPokemons.length > 0) {
+            setIsFiltering(true);
+        }
         setFilteredPokemons(newPokemons);
     }, 500), [pokemons, setFilteredPokemons]);
 
@@ -99,7 +104,7 @@ const Home = () => {
                 <input ref={inputRef} placeholder="filter a pokemon..." className="input" onChange={onHandleChange} onKeyDown={onHandleKeyDown} value={inputRef?.current?.target?.value}/>
                 <div className="list-container">
                     {filteredPokemons.map(pokemon => (
-                        <Card key={pokemon.id} item={pokemon} goToDetails={handleDetail}  />
+                        <Card key={pokemon.id} item={pokemon} goToDetails={handleDetail} isFiltering={inputRef?.current?.value && isFiltering}  />
                     ))}
                 </div>
                 <div className="button-container">
